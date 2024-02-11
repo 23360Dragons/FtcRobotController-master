@@ -8,22 +8,18 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-//@TeleOp
-public class ProgramStorage  {
 
-}
+public class ProgramStorage extends OpMode{
 
 
     // Label all programs to be stored to work on later please
 
-    /*                        Claw program for now
+    /*                       Claw program for now
       The claw will open and close when pressing x and y using servos idk
       if it'll work cause I think theres something else but I cant remember
-      what
+      what*/
 
-        Servo claw1;
-    Servo claw2;
-    final static double Claw_Home = 0.0;
+
     final static double Claw_Min = 0.0;
     final static double Claw_Max = 0.0;
 
@@ -41,27 +37,14 @@ public class ProgramStorage  {
     @Override
     public void init() {
 
-        claw1 = hardwareMap.get(Servo.class, "Claw1");
-        claw2 = hardwareMap.get(Servo.class, "Claw2");
-
-        claw1.setPosition(Claw_Home);
-        claw2.setPosition(Claw_Home);
 
     }
 
     @Override
     public void loop() {
 
-        if (gamepad2.a) {
-            claw1.setPosition(0);
-            claw2.setPosition(0);
-        }else if (gamepad2.y) {
-            claw1.setPosition(0.5);
-            claw2.setPosition(0.5);
-        }
-
     }
-     */
+
     //
 
 
@@ -148,6 +131,6 @@ The robot will approach the backstage until it is close enough for the manipulat
 */
 
 
-
+}
 
 

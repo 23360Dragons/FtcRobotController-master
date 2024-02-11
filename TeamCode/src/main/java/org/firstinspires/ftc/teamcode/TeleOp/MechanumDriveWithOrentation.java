@@ -19,6 +19,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 public class MechanumDriveWithOrentation extends OpMode {
 
 
+
     IMU _orient;
     DcMotor _intake;
     DcMotor _rightFront;
@@ -30,10 +31,25 @@ public class MechanumDriveWithOrentation extends OpMode {
     Servo _airplane;
     private double servoPosition;
     private org.firstinspires.ftc.robotcore.external.navigation.AngleUnit AngleUnit;
+    Servo claw1;
+    Servo claw2;
+    final static double Claw_Home = 0.0;
 
+    Servo arm1;
+    Servo arm2;
+
+    private double pos1;
+    private double pos2;
     @Override
     public void init() {
-
+        arm1 = hardwareMap.get(Servo.class, "Arm1");
+        arm2 = hardwareMap.get(Servo.class, "Arm2");
+        arm1.setDirection(Servo.Direction.REVERSE);
+        //Starting position IS 0.65, up position is 0.45
+        pos1 = 0.65;
+        pos2 = 0.65;
+        arm2.setPosition(pos2);
+        arm1.setPosition(pos1);
         _linear1 = hardwareMap.get(DcMotor.class, "Linear1");
         _linear2 = hardwareMap.get(DcMotor.class, "Linear2");
 
@@ -63,7 +79,12 @@ public class MechanumDriveWithOrentation extends OpMode {
         _airplane = hardwareMap.get(Servo.class, "Airplane");
         servoPosition = 1;
         _airplane.setPosition(servoPosition);
+        claw1 = hardwareMap.get(Servo.class, "Claw1");
+        claw2 = hardwareMap.get(Servo.class, "Claw2");
+        claw1.setDirection(Servo.Direction.REVERSE);
 
+        claw1.setPosition(Claw_Home);
+        claw2.setPosition(Claw_Home);
        /* AprilTagProcessor tagProcessor = new AprilTagProcessor.Builder()
                 .setDrawAxes(true)
                 .setDrawCubeProjection(true)
@@ -152,11 +173,17 @@ public class MechanumDriveWithOrentation extends OpMode {
             _rightFront.setPower(((y - x) - rightX) * speed);
             _rightBack.setPower(((y + x) - rightX) * speed);
         }
-        if (gamepad2.b){
-            _intake.setPower(-0.85) ;
-        } else if (gamepad2.x){
-            _intake.setPower(0.85);
-        } else {
+        //add comment about which way the intake runs
+        //is negative in or out?
+        if (gamepad2.b)
+        {
+            _intake.setPower(-0.75) ;
+        }
+        else if (gamepad2.x)
+        {
+            _intake.setPower(0.75);
+        } else
+        {
             _intake.setPower(0);
         }
 
@@ -172,8 +199,27 @@ public class MechanumDriveWithOrentation extends OpMode {
             _linear2.setPower(0);
         }
         if (gamepad2.right_bumper || gamepad2.left_bumper) {
-            servoPosition -= 0.1;
+            servoPosition = 0;
             _airplane.setPosition(servoPosition);
         }
+
+        if (gamepad2.a) {
+            claw1.setPosition(0);
+            claw2.setPosition(0);
+        }else if (gamepad2.y) {
+            claw1.setPosition(0.35);
+            claw2.setPosition(0.35);
         }
+        if (gamepad2.dpad_left){
+            pos2 = 0.4;
+            pos1 = 0.4;
+            arm1.setPosition(pos1);
+            arm2.setPosition(pos2);
+        } else if (gamepad2.dpad_right) {
+            pos2 = 0.65;
+            pos1 = 0.65;
+            arm1.setPosition(pos1);
+            arm2.setPosition(pos2);
+        }
+    }
     }

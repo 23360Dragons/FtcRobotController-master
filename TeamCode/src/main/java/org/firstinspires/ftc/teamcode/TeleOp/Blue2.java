@@ -49,7 +49,7 @@ public class Blue2 extends LinearOpMode {
         //assumption - right side reversed
         _rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         _rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
-        //_intakeRamp.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         //For encoders
         int lF = _leftFront.getCurrentPosition();
@@ -63,20 +63,35 @@ public class Blue2 extends LinearOpMode {
 
 
         waitForStart();
-        _leftFront.setPower(-0.5);
-        _leftBack.setPower(-0.5);
-        _rightFront.setPower(-0.5);
-        _rightBack.setPower(-0.5);
-        Thread.sleep(2250);
-        _leftFront.setPower(0.75);
-        _leftBack.setPower(-0.75);
-        _rightFront.setPower(-0.75);
-        _rightBack.setPower(0.75);
-        Thread.sleep(3000);
         _leftFront.setPower(0);
         _leftBack.setPower(0);
         _rightFront.setPower(0);
         _rightBack.setPower(0);
-        Thread.sleep(24000);
+        Thread.sleep(5000);
+        _leftFront.setPower(-0.5);
+        _leftBack.setPower(-0.5);
+        _rightFront.setPower(-0.5);
+        _rightBack.setPower(-0.5);
+        Thread.sleep(1650);
+        _leftFront.setPower(0.75);
+        _leftBack.setPower(-0.75);
+        _rightFront.setPower(-0.75);
+        _rightBack.setPower(0.75);
+        Thread.sleep(2900);
+        _leftFront.setPower(0.5);
+        _leftBack.setPower(0.5);
+        _rightFront.setPower(0.5);
+        _rightBack.setPower(0.5);
+        Thread.sleep(200);
+        _intake.setPower(0.3);
+        _leftFront.setPower(0);
+        _leftBack.setPower(0);
+        _rightFront.setPower(0);
+        _rightBack.setPower(0);
+        Thread.sleep(50);
+        _intake.setPower(-0.3);
+        Thread.sleep(360);
+        _intake.setPower(0);;
+        Thread.sleep(30000);
     }
 }

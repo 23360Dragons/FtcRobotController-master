@@ -18,7 +18,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 public class Red4 extends LinearOpMode {
 
     IMU _orient;
-    //DcMotor _intakeRamp;
+    DcMotor _intake;
     DcMotor _rightFront;
     DcMotor _leftFront;
     DcMotor _rightBack;
@@ -44,8 +44,7 @@ public class Red4 extends LinearOpMode {
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcamera"))
                 .setCameraResolution(new Size(640,480))
                 .build();*/
-
-        //_intakeRamp = hardwareMap.get(DcMotor.class, "IntakeRamp");
+        _intake = hardwareMap.get(DcMotor.class, "Intake");
         _orient = hardwareMap.get(IMU.class, "BHI260AP");
         _leftFront = hardwareMap.get(DcMotor.class, "LeftFront");
         _rightFront = hardwareMap.get(DcMotor.class, "RightFront");
@@ -55,7 +54,7 @@ public class Red4 extends LinearOpMode {
         //assumption - right side reversed
         _rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         _rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
-       // _intakeRamp.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         //For encoders
         int lF = _leftFront.getCurrentPosition();
@@ -69,6 +68,11 @@ public class Red4 extends LinearOpMode {
 
 
         waitForStart();
+        _leftFront.setPower(0);
+        _leftBack.setPower(0);
+        _rightFront.setPower(0);
+        _rightBack.setPower(0);
+        Thread.sleep(5000);
         _leftFront.setPower(-0.75);
         _leftBack.setPower(0.75);
         _rightFront.setPower(0.75);
@@ -78,5 +82,10 @@ public class Red4 extends LinearOpMode {
         _leftBack.setPower(0);
         _rightFront.setPower(0);
         _rightBack.setPower(0);
+        Thread.sleep(100);
+        _intake.setPower(-0.3);
+        Thread.sleep(360);
+        _intake.setPower(0);
+        Thread.sleep(30000);
     }
 }
