@@ -17,9 +17,6 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 @TeleOp
 public class MechanumDriveWithOrentation extends OpMode {
-
-
-
     IMU _orient;
     DcMotor _intake;
     DcMotor _rightFront;
