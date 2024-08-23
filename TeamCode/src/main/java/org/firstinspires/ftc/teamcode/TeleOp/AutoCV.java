@@ -13,7 +13,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 
 import java.util.jar.Attributes;
 
-//demo githut
+//demo GITHUB 8*24*2024
 
 //@Autonomous
 //public class AutoCV extends LinearOpMode
